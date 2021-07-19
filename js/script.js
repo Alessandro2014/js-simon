@@ -9,35 +9,48 @@
 
 
 var numberList = [];
+var userList = [];
+var correctNumberList = [];
 
 
  //CICLO WHILE PER INSERIRE 4 NUMERI RANDOM NELL'ARREY
-while (numberList.length <= 5) {
-    var choiceNumber = randomNumber(1, 99);
+while (numberList.length < 5) {
+    var choiceNumber = randomNumber(1, 100);
     // VERIFICO CHE NELLA LISTA NON SIANO PRESENTI QUEI NUMERI
     if (!numberList.includes(choiceNumber)) {
         numberList.push(choiceNumber);
     }
 }
-alert("I numeri scelti sono: " + numberList)
+alert("I numeri sono: " + numberList)
+
+setTimeout(function() {
+    while (userList.length < 5) {
+        var userChoice = getNumber();
+        if (!userList.includes(userChoice)) {
+            userList.push(userChoice);
+            if (numberList.includes(userChoice)) {
+                correctNumberList.push(userChoice);
+            } 
+            } else {
+            alert("Hai già scelto questo numero");
+        }
+    }      alert("numeri indovinati " + correctNumberList);
+}, 2000);
 
 
 
-
-
-
-
+//FUNZIONE TIMER CON RICHIESTA NUMERO
 
 //FUNZIONE NUMERO RANDOM
 function randomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-// FUNZIONE RICHIESTA NUMERO
-function getUserNumber (min, max) {
-    var number;
-    do {
-    number = prompt("Inserisci un numero");
-    }  while (!isNaN(number) || (!number.trim == " "));
-    return parseInt(number);
-}
+//FUNZIONE PER RICHIEDERE UN NUMERO
+function getNumber() {
+    var number = prompt('Inserisci un numero da 1 a 100');
+    while (!number || isNaN(number) || number <= 0 || number > 100) {
+      number = prompt('ATTENZIONE, inserisci un numero valido');
+    }
+    return number;
+  }
