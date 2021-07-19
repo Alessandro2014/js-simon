@@ -21,8 +21,9 @@ while (numberList.length < 5) {
         numberList.push(choiceNumber);
     }
 }
-alert("I numeri sono: " + numberList)
+alert("I numeri sono: " + numberList.sort());
 
+//FUNZIONE TIMER CON RICHIESTA NUMERO
 setTimeout(function() {
     while (userList.length < 5) {
         var userChoice = getNumber();
@@ -31,15 +32,17 @@ setTimeout(function() {
             if (numberList.includes(userChoice)) {
                 correctNumberList.push(userChoice);
             } 
-            } else {
+        } else {
             alert("Hai già scelto questo numero");
         }
-    }      alert("numeri indovinati " + correctNumberList);
+    }  
+    var message = "Hai indovinato: " + correctNumberList + "punteggio: " + correctNumberList.length;
+    if(correctNumberList.length === 0){
+        message = "Non hai indovinato nessun numero";
+    }
+    alert(message);
 }, 2000);
 
-
-
-//FUNZIONE TIMER CON RICHIESTA NUMERO
 
 //FUNZIONE NUMERO RANDOM
 function randomNumber(min, max) {
